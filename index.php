@@ -91,10 +91,40 @@ if (isset($_POST['submit'])) {
            <!-- show data -->
         <div class="card">
             <div class="card-header text-white bg-primary">
-                Documents
+                Documents List
             </div>
             <div class="card-body">
-               
+               <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $sql2 = "select * from documents order by id";
+                            $q2 = mysqli_query($connection,$sql2);
+                            $index = 1;
+                            while($r2 = mysqli_fetch_array($q2)){
+                                $id = $r2['id'];
+                                $title = $r2['title'];
+                         
+                            ?>
+                            <tr>
+                               <td scope="row"><?php echo $index++  ?></th> 
+                               <td scope='row'><?php echo $title  ?></td>
+                               <td>
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                               </td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+               </table>
             </div>
         </div>
     </div>
